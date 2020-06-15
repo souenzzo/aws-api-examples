@@ -42,3 +42,22 @@ Some tips about use [aws-api](https://github.com/cognitect-labs/aws-api)
                                   :sourceReference "feature/pr-example"}]}})
 ```
 
+## Get logs
+
+`:logGroupName` you can get in `CloudWatch > CloudWatch Logs > Log groups`.
+
+`:logStreamName` is usually dynamic, once applications scale/start/stop instances, it will change. My dev env only use once instance, so it's easy to get it.
+
+```clojure
+(aws/invoke logs
+            {:op      :GetLogEvents
+             :request {:logGroupName  "AppDev-HTTPLogGroup-XYZXYZXYZ"
+                       :logStreamName "i-0202020202/my-awesome-app.log"}})
+=> {:events [{:timestamp 1592222752489,
+              :message   "09:05:47.508 INFO  org.eclipse.jetty.util.log - Logging initialized @118757ms to org.eclipse.jetty.util.log.Slf4jLog",
+              :ingestionTime 1592222758746}]
+ :nextForwardToken "f/35508359754442739897239510339078412739981807580925853699",
+ :nextBackwardToken "b/35507753902560279538697240774210420589596513875306545152"}
+```
+
+
