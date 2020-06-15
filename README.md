@@ -32,3 +32,13 @@ Some tips about use [aws-api](https://github.com/cognitect-labs/aws-api)
 
 - Probably missing `:FromEmailAddress` that isn't listed as `:required` but it is.
 
+## Create a pull request in codecommit
+
+```clojure
+(aws/invoke codecommit
+            {:op      :CreatePullRequest
+             :request {:title   "Create a PR Example"
+                       :targets [{:repositoryName  "aws-api-examples"
+                                  :sourceReference "feature/pr-example"}]}})
+```
+
