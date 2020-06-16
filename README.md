@@ -15,6 +15,7 @@ Some tips about use [aws-api](https://github.com/cognitect-labs/aws-api)
                                                    :Charset "UTF-8"}
                                          :Body    {:Text {:Data    "world"
                                                           :Charset "UTF-8"}}}}}})
+=> {:MessageId "00000172bd250f73-50682c83-a6b3-4086-909c-064859a10cc9-000000"}
 ```
 
 ### Common issues
