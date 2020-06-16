@@ -3,6 +3,8 @@
 Some tips about use [aws-api](https://github.com/cognitect-labs/aws-api)
 
 
+
+
 ## Send a email 
 
 ```clojure
@@ -25,13 +27,28 @@ Some tips about use [aws-api](https://github.com/cognitect-labs/aws-api)
     :cognitect.anomalies/category :cognitect.anomalies/incorrect}
 ```
 
-- Both `:FromEmailAddress` / `:ToAddresses` needs to be verified in `Simple Email Service > Email Address`
+- Both `:FromEmailAddress` / `:ToAddresses` needs to be verified in `Simple Email Service > Email Address`. Checkout "Verify a email"
 
 ```clojure
 => {:message nil, :cognitect.anomalies/category :cognitect.anomalies/incorrect}
 ```
 
 - Probably missing `:FromEmailAddress` that isn't listed as `:required` but it is.
+
+## Verify a email
+
+```clojure
+(aws/invoke
+  sesv2
+  {:op      :CreateEmailIdentity
+   :request {:EmailIdentity "me@example.com"}})
+=> {:IdentityType             "EMAIL_ADDRESS"
+    :VerifiedForSendingStatus false
+    :DkimAttributes           nil}
+```
+
+Then login into `me` and authorize AWS to send emails for you inside sandbox.
+
 
 ## Create a pull request in codecommit
 
