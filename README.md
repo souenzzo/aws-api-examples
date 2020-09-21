@@ -78,4 +78,8 @@ Then login into `me` and authorize AWS to send emails for you inside sandbox.
  :nextBackwardToken "b/35507753902560279538697240774210420589596513875306545152"}
 ```
 
+## Send a message to SNS
 
+(aws/invoke sns {:op      :Publish
+                 :request {:TopicArn "arn:aws:sns:us-east-6:666666666:topic-name"
+                           :Message "{\"hello\": \"world\", "this message is usually a": \"JSON!\"}"}})
